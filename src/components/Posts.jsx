@@ -1,4 +1,18 @@
+import { useState } from "react";
+
 function Posts() {
+  const [likeCount, setLikeCount] = useState(10);
+
+  const handleLikeClick = () => {
+    setLikeCount(likeCount + 1);
+  };
+
+  const handleDislikeClick = () => {
+    if (likeCount > 0) {
+      setLikeCount(likeCount - 1);
+    }
+  };
+
   return (
     <div class="app-wrapper">
       <h1 class="app-title">Posts</h1>
@@ -8,7 +22,7 @@ function Posts() {
             <h2>Post Title #1</h2>
             <div class="post-social-media-stats">
               <span class="stats-topic">Likes: </span>
-              <span class="post-likes">10</span>
+              <span class="post-likes">{likeCount}</span>
             </div>
           </div>
           <p class="post-content">
@@ -19,8 +33,12 @@ function Posts() {
             condimentum mauris euismod pellentesque eu eu justo...
           </p>
           <div class="post-actions">
-            <button class="like-button">Like</button>
-            <button class="dislike-button">Dislike</button>
+            <button class="like-button" onClick={handleLikeClick}>
+              Like
+            </button>
+            <button class="dislike-button" onClick={handleDislikeClick}>
+              Dislike
+            </button>
           </div>
         </div>
       </div>
